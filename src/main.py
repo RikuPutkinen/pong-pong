@@ -24,7 +24,7 @@ while game_state.running:
     if (game_state.player_score < score_limit) and (game_state.computer_score < score_limit):
         continue_game(screen, font, game_state, player_paddle, computer_paddle)
     else:
-        end_screen(screen, font, game_state)
+        end_screen(screen, font, game_state, player_paddle, computer_paddle)
     
     pygame.display.flip()
     game_state.dt = clock.tick(60) / 1000

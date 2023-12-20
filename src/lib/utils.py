@@ -59,6 +59,10 @@ class Paddle():
         elif (direction == "down") and (self.rect.bottom < height):
             self.pos += 300 * dt
         self.rect.centery = self.pos
+    
+    def reset_pos(self, screen):
+        self.pos = screen.get_height() / 2
+        self.rect.centery = self.pos
 
 class Button():
     def __init__(self, text, x, y, id):
@@ -105,7 +109,12 @@ class GameState():
         self.running = True
         self.selected_button_id = 0
 
-def end_screen(screen, font, game_state):
+def reset(game_state, screen, player_paddle, computer_paddle):
+    game_state.__init__()
+    player_paddle.reset_pos(screen)
+    computer_paddle.reset_pos(screen)
+
+def end_screen(screen, font, game_state, player_paddle, computer_paddle):
     (width, height) = screen.get_size()
     rematch_button = Button("Rematch", 100, 300, 0)
     exit_button = Button("Quit", 400, 300, 1)
@@ -128,7 +137,7 @@ def end_screen(screen, font, game_state):
     screen.blit(text, text_rect)
     
     if rematch_button.draw(screen, font, game_state):
-        game_state.__init__()
+        reset(game_state, screen, player_paddle, computer_paddle)
     if exit_button.draw(screen, font, game_state):
         game_state.running = False
 
