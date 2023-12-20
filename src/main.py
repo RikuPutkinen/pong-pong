@@ -8,8 +8,7 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Pong Pong")
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("ubuntumono", 32)
-score_limit = 1
-
+score_limit = 50
 
 player_paddle = Paddle(screen)
 computer_paddle = Paddle(screen)
